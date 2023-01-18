@@ -1,0 +1,26 @@
+<header class="p-1 bg-dark">
+  <div class="d-flex align-items-center">
+    <img src="/assets/images/logo.png" [routerLink]="['/']" style="max-height: 70px;margin-left: 25px" alt="logo">
+    <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center text-uppercase">
+      <li><a [routerLink]="['/']" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact:true}"
+             class="nav-link px-2">Home</a>
+      </li>
+      <li><a [routerLink]="['/catalog']" routerLinkActive="active" class="nav-link px-2">Catalog</a></li>
+      <li><a [routerLink]="['/faq']" routerLinkActive="active" class="nav-link px-2">FAQs</a></li>
+      <li><a [routerLink]="['about']" routerLinkActive="active" class="nav-link px-2">About</a></li>
+    </ul>
+    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+      <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+             aria-label="Search">
+    </form>
+    <div class="d-flex align-items-center">
+      <a class="position-relative" style="margin-right: 25px">
+        <i class="fa fa-shopping-cart fa-2x m-auto text-white"></i>
+        <div class="cart-no">0</div>
+      </a>
+      <button type="button" class="btn btn-outline-light me-2">Login</button>
+      <button type="button" class="btn btn-outline-light sign-in-button" style="margin-right: 25px">Sign-up</button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,25 @@
+.cart-no {
+  position: absolute;
+  min-height: 25px;
+  min-width: 25px;
+  border-radius: 50%;
+  font-size: 1em;
+  text-align: center;
+  top: -12px;
+  right: -20px;
+  background: white;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+
+  &.active {
+    color: orange;
+  }
+}
+
+.sign-in-button{
+  color: orange;
+}
