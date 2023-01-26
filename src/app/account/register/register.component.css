@@ -1,0 +1,30 @@
+.form-signin {
+  width: 100%;
+  max-width: 350px;
+}
+
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  line-height: 2.5;
+  color: black;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  margin-bottom: 10px;
+}
+
+.form-signin button {
+  width: 100%;
+  color: orange;
+  border-radius: 0.5rem;
+}
+

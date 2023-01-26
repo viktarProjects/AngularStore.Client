@@ -17,7 +17,7 @@ export class ShopComponent implements OnInit {
   types: IType[] = [];
   shopParams = new ShopParams();
   totalCount: number = 0;
-  @ViewChild('search', {static: true}) searchTerm: ElementRef | undefined;
+  @ViewChild('search', {static: false}) searchTerm: ElementRef | undefined;
   sortOptions = [
     {name: 'Alphabetical', value: 'name'},
     {name: 'Price: Low to High', value: 'priceAsc'},

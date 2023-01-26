@@ -1,0 +1,19 @@
+<div class="form-control">
+  <input
+    [ngClass]="(controlDir && controlDir.control
+ && controlDir.control.touched)
+ ? !controlDir.control.valid
+ ? 'is-invalid' : 'is-valid' : null"
+    formControlName="email"
+    [type]="type"
+    (input)="onChange($event.target.value)"
+    (blur)="onTouched()"
+    id="{{label}}"
+    class="form-control"
+    placeholder="{{label}}">
+  <div class="invalid-feedback" *ngIf="(controlDir && controlDir.control &&
+!controlDir.control.valid && controlDir.control.touched)">
+    <small *ngIf="controlDir.control.errors?.['required']">{{label}} is required</small>
+    <small *ngIf="controlDir.control.errors?.['pattern']">Invalid email address</small>
+  </div>
+</div>

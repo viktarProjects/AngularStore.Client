@@ -4,11 +4,11 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {CoreModule} from "./core/core.module";
-import {ShopModule} from "./components/shop/shop.module";
 import {AppRoutingModule} from "./app-routing.module";
-import {HomeComponent} from "./components/home/home.component";
 import {HomeModule} from "./components/home/home.module";
 import {ErrorInterceptor} from "./core/interceptors/error.interceptor";
+import {NgxSpinnerModule} from "ngx-spinner";
+import {LoadingInterceptor} from "./core/interceptors/loading.interceptor";
 
 @NgModule({
   declarations: [
@@ -20,10 +20,12 @@ import {ErrorInterceptor} from "./core/interceptors/error.interceptor";
     HttpClientModule,
     CoreModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    NgxSpinnerModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

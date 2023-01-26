@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center mt-5 text-center">
+  <form class="form-signin py-2" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h1 class="h3 mb-3 font-weight-normal">Please register</h1>
+    <input formControlName="displayName" type="text" id="displayName" class="form-control" placeholder="Username">
+    <div class="d-flex justify-content-start">
+      <small class="text-danger" *ngIf="registerForm.controls['displayName'].invalid
+          && registerForm.controls['displayName'].touched
+          && registerForm.controls['displayName'].errors!['required']">
+        <i class="fa fa-minus-circle">Username is required</i>
+      </small>
+    </div>
+    <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address">
+    <div class="d-flex justify-content-start">
+      <small class="text-danger" *ngIf="registerForm.controls['email'].invalid
+          && registerForm.controls['email'].touched
+          && registerForm.controls['email'].errors!['required']">
+        <i class="fa fa-minus-circle">Email address is required</i>
+      </small>
+      <small class="text-danger" *ngIf="registerForm.controls['email'].invalid
+          && registerForm.controls['email'].touched
+          && registerForm.controls['email'].errors!['pattern']">
+        <i class="fa fa-minus-circle">Email address is not valid</i>
+      </small>
+      <small class="text-danger" *ngIf="registerForm.controls['email'].invalid
+          && registerForm.controls['email'].dirty
+          && registerForm.controls['email'].errors!['emailExists']">
+        <i class="fa fa-minus-circle">Email address has already been taken</i>
+      </small>
+    </div>
+    <div *ngIf = "registerForm.controls['email'].status === 'PENDING'"
+         class="fa fa-spinner fa-spin loader">
+    </div>
+    <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password">
+    <div class="d-flex justify-content-start">
+      <small class="text-danger" *ngIf="registerForm.controls['password'].invalid
+          && registerForm.controls['password'].touched
+          && registerForm.controls['password'].errors!['required']">
+        <i class="fa fa-minus-circle">Password is required</i>
+      </small>
+    </div>
+    <ul class="text-danger list-unstyled" *ngIf="errors">
+      <li *ngFor="let error of errors">{{error}}</li>
+    </ul>
+    <button [disabled]="registerForm.invalid" class="btn btn-primary" type="submit">Sign up</button>
+    <p class="mt-5 mb-3 text-muted">© 2023-2024</p>
+  </form>
+</div>

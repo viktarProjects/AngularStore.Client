@@ -1,15 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor} from '@angular/common/http';
-import {catchError, Observable, throwError} from 'rxjs';
+import {catchError, delay, Observable, throwError} from 'rxjs';
 import {NavigationExtras, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router,private toastr:ToastrService) {
-
-  }
+  constructor(private router: Router,private toastr:ToastrService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
