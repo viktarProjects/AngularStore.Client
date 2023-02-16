@@ -1,0 +1,37 @@
+<div class="mt-4 form-checkout" [formGroup]="addressForm">
+  <div class="d-flex justify-content-between align-items-center">
+    <h4>Shipping address</h4>
+    <button (click)="saveUserAddress()" class="btn btn-outline-success my-3">
+      Save as default address
+    </button>
+  </div>
+  <div class="row">
+    <div class="form-group col-6">
+      <app-text-input [formControl]="$any(addressForm.controls['firstName'])" label="First Name"></app-text-input>
+    </div>
+    <div class="form-group col-6">
+      <app-text-input [formControl]="$any(addressForm.controls['lastName'])" label="Last Name"></app-text-input>
+    </div>
+    <div class="form-group col-6">
+      <app-text-input [formControl]="$any(addressForm.controls['street'])" label="Street"></app-text-input>
+    </div>
+    <div class="form-group col-6">
+      <app-text-input [formControl]="$any(addressForm.controls['city'])" label="City"></app-text-input>
+    </div>
+    <div class="form-group col-6">
+      <app-text-input [formControl]="$any(addressForm.controls['state'])" label="State"></app-text-input>
+    </div>
+    <div class="form-group col-6">
+      <app-text-input [formControl]="$any(addressForm.controls['zipCode'])" label="Zip code"></app-text-input>
+    </div>
+  </div>
+</div>
+
+<div class="float-none d-flex justify-content-between flex-column flex-lg-row my-5">
+  <button class="btn btn-outline-primary" routerLink="/basket">
+    <i class="fa fa-angle-left"></i>Back to basket
+  </button>
+  <button [disabled]="addressForm.invalid" class="btn btn-primary" cdkStepperNext>
+    Go to Delivery<i class="fa fa-angle-right"></i>
+  </button>
+</div>

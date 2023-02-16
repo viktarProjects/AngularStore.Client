@@ -1,0 +1,42 @@
+<div class="container contact-form">
+  <div class="contact-image">
+    <img src="https://media.istockphoto.com/id/1251442350/photo/woman-using-laptop.jpg?s=170667a&w=0&k=20&c=ET3j2ocPUhUBLE-FlCfuUbENRJU8BBdKkhKbX0t-OOc=" alt="rocket_contact"/>
+  </div>
+  <form method="post">
+    <h3>Drop Us a Message</h3>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group mb-3">
+          <app-text-input
+            [formControl]="$any(contactUsForm.controls['userName'])"
+            [value]="(currentUser$ | async)?.userName"
+            label="User name">
+
+          </app-text-input>
+        </div>
+        <div class="form-group mb-3">
+          <app-text-input
+            [formControl]="$any(contactUsForm.controls['email'])"
+            [value]="(currentUser$ | async)?.email"
+            label="Email address">
+          </app-text-input>
+        </div>
+        <div class="form-group mb-3">
+          <app-text-input
+            [formControl]="$any(contactUsForm.controls['phoneNumber'])"
+            [value]="(currentUser$ | async)?.phoneNumber"
+            label="Phone number">
+          </app-text-input>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="min-height: 250px"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
