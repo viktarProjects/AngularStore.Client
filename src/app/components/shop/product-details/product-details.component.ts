@@ -28,8 +28,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   loadProduct() {
-    // @ts-ignore
-    this.shopService.getProduct(+this.activatedRoute.snapshot.paramMap.get('id')).subscribe(product => {
+    this.shopService.getProduct(+this.activatedRoute.snapshot.paramMap.get('id')!).subscribe(product => {
       this.product = product;
       this.bcService.set('@productDetails', product.name);
     }, error => {
@@ -48,7 +47,6 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addItemToBasket() {
-    this.basketService.addItemToBasket(this.product, this.quantity);
     this.quantity = 1;
   }
 }

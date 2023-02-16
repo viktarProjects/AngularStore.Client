@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {BasketService} from "./components/basket/basket.service";
 import {AccountService} from "./account/account.service";
+import {CookieService} from "ngx-cookie-service";
+import jwtDecode from "jwt-decode";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +12,9 @@ import {AccountService} from "./account/account.service";
 export class AppComponent implements OnInit {
   title = 'AngularStore';
 
-  constructor(private basketService: BasketService, private accountService: AccountService) {
+  constructor(private basketService: BasketService,
+              private accountService: AccountService,
+              private cookieService: CookieService) {
   }
 
   ngOnInit(): void {
@@ -29,12 +33,23 @@ export class AppComponent implements OnInit {
   }
 
   loadBasket() {
-    const basketId = localStorage.getItem('basket_id');
-    if (basketId) {
-      this.basketService.getBasket(basketId).subscribe(() => {
+    const basketId = this.cookieService.get('buyerId');
+    const userName = this.jwtDecoder();
+    const credentials = userName ? userName : basketId;
+    if (credentials) {
+      this.basketService.getBasket(credentials).subscribe(() => {
       }, error => {
         console.log(error);
       });
+    }
+  }
+
+  private jwtDecoder() {
+    const token = localStorage.getItem('token');
+    if(token){
+      const decoded = jwtDecode(token, {header: false});
+      // @ts-ignore
+      return decoded!.unique_name;
     }
   }
 }

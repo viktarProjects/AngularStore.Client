@@ -1,12 +1,16 @@
 import {v4 as uuid4} from 'uuid';
 
 export interface IBasket {
-  id:string;
+  buyerId:string;
   items:IBasketItem[];
+  clientSecret?:string;
+  paymentIntentId?:string;
+  deliveryMethodId?:number;
+  shippingPrice?:number;
 }
 
 export interface IBasketItem {
-  id:number;
+  productId:number
   productName:string;
   price:number;
   quantity:number;
@@ -17,13 +21,13 @@ export interface IBasketItem {
 
 
 export class Basket implements IBasket {
-  id: string = uuid4();
+  buyerId: string = uuid4();
   items: IBasketItem[] = [];
 
 }
 
 export interface IBasketTotals {
-  shipping:number;
+  shippingPrice:number;
   subtotal:number;
   total:number;
 }

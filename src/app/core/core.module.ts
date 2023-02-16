@@ -1,19 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NavBarComponent} from "./nav-bar/nav-bar.component";
+import {NavBarComponent} from "./layout/nav-bar/nav-bar.component";
 import {RouterModule} from "@angular/router";
-import {TestErrorComponent} from './test-error/test-error.component';
-import {NotFoundComponent} from './test-error/not-found/not-found.component';
-import {ServerErrorComponent} from './test-error/server-error/server-error.component';
 import {ToastrModule} from "ngx-toastr";
-import { SectionHeaderComponent } from './section-header/section-header.component';
+import { SectionHeaderComponent } from './layout/section-header/section-header.component';
 import {BreadcrumbModule} from "xng-breadcrumb";
 import {SharedModule} from "../shared/shared.module";
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import {ContactUsComponent} from "../components/contact-us/contact-us.component";
 
 
 @NgModule({
-  declarations: [NavBarComponent, TestErrorComponent, NotFoundComponent, ServerErrorComponent, SectionHeaderComponent, FooterComponent],
+  declarations: [NavBarComponent,SectionHeaderComponent, FooterComponent,ContactUsComponent],
   imports: [
     CommonModule,
     BreadcrumbModule,
@@ -24,7 +22,7 @@ import { FooterComponent } from './footer/footer.component';
       preventDuplicates: true
     })
   ],
-  exports: [NavBarComponent, SectionHeaderComponent,FooterComponent]
+  exports: [NavBarComponent, SectionHeaderComponent,FooterComponent,ContactUsComponent]
 })
 export class CoreModule {
 }

@@ -1,5 +1,5 @@
 <div class="container my-2">
-  <div *ngIf="(basket$ | async) as basket">
+  <div *ngIf="(basket$ | async)?.items?.length! <= 0 as basket">
     <p>There are no items in your basket</p>
   </div>
 
@@ -9,72 +9,27 @@
         <div class="row">
           <div class="col-12 my-2">
             <div class="table-responsive">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th class="border-0 bg-light" scope="col">
-                    <div class="py-3 text-uppercase">Product</div>
-                  </th>
-                  <th class="border-0 bg-light" scope="col">
-                    <div class="py-3 text-uppercase">Price</div>
-                  </th>
-                  <th class="border-0 bg-light" scope="col">
-                    <div class="py-3 text-uppercase">Quantity</div>
-                  </th>
-                  <th class="border-0 bg-light" scope="col">
-                    <div class="py-3 text-uppercase">Total</div>
-                  </th>
-                  <th class="border-0 bg-light" scope="col">
-                    <div class="py-3 text-uppercase">Remove</div>
-                  </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let basketItem of basket.items">
-                  <th scope="row">
-                    <div class="p-2">
-                      <img src="{{basketItem.pictureUrl}}"
-                           alt="{{basketItem.productName}}"
-                           style="max-height: 50px"
-                           class="img-fluid">
-                      <div class="ml-3 align-middle">
-                        <h5 class="mb-0">
-                          <a routerLink="/catalog/{{basketItem.id}}"></a>
-                        </h5>
-                        <span
-                          class="text-muted font-weight-normal font-italic d-block">
-                          Type : {{basketItem.type}}
-                        </span>
-                      </div>
-                    </div>
-                  </th>
-                  <td class="align-middle">{{basketItem.price | currency}}</td>
-                  <td class="align-middle">
-                    <div class="d-flex align-items-center">
-                      <i (click)="decreaseBasketItem(basketItem)" class="fa fa-minus-circle text-warning mx-2"
-                         style="cursor: pointer; font-size: 2em"></i>
-                      <span class="font-weight-bold" style="font-size: 1.5em">{{basketItem.quantity}}</span>
-                      <i (click)="increaseBasketItem(basketItem)" class="fa fa-plus-circle text-warning mx-2"
-                         style="cursor: pointer; font-size: 2em"></i>
-                    </div>
-                  </td>
-                  <td class="align-middle">{{basketItem.price * basketItem.quantity | currency}}</td>
-                  <td class="align-middle text-center">
-                    <a class="text-danger">
-                      <i (click)="removeItem(basketItem)" class="fa fa-trash"
-                         style="font-size: 2em; cursor: pointer"></i>
-                    </a>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+              <app-basket-summary
+                (decrement)="decreaseItemCount($event)"
+                (increment)="increaseItemCount($event)"
+                (remove)="deleteItem($event)"
+                [items]="(basket$ | async)?.items!"
+              >
+              </app-basket-summary>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-6 offset-6">
-            <app-order-totals></app-order-totals>
-            <a routerLink="/checkout" class="btn btn-outline-primary py-2 btn-block">
+            <app-order-totals
+            *ngIf="(basketTotals$ | async)"
+            [shipping]="(basketTotals$ | async)?.shippingPrice!"
+            [subtotal]="(basketTotals$ | async)?.subtotal!"
+            [total]="(basketTotals$ | async)?.total!"
+            >
+
+            </app-order-totals>
+            <a routerLink="/checkout" class="btn my-3 text-white" style="background-color: orange">
               Proceed to checkout
             </a>
           </div>

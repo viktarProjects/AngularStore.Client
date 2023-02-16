@@ -1,29 +1,123 @@
 <main role="main">
-  <div class="jumbotron">
+
+  <div class="site-blocks-cover mb-4" style="background-color: #272343">
+    <div class="img-wrap">
+      <div class="owl-carousel slide-one-item hero-slider">
+        <div class="slide">
+          <img src="assets/images/main.jpg" alt="Free Website Template by Free-Template.co">
+        </div>
+      </div>
+    </div>
     <div class="container">
-      <h1 class="display-3">Hello, world!</h1>
-      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-      <p><a class="btn btn-primary" href="#" role="button">Learn more »</a></p>
+      <div class="row">
+        <div class="col-md-6 ml-auto align-self-center">
+          <div class="intro">
+            <div class="heading">
+              <h1 class="font-weight-bold" style="color: orange">The Studio</h1>
+            </div>
+            <div class="text sub-text">
+              <p style="color: black;font-weight: bolder;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi omnis qui distinctio.</p>
+              <p class="mx-5"><a [routerLink]="['/catalog']" class="btn btn-outline-primary btn-md btn-pill" style="color:black;border-color: orange">Start shopping</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="container">
+  <div class="container marketing">
     <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="assets/images/nikeFounder.png" alt="Generic placeholder image" width="140"
+             height="140">
+        <h2>Phil Knight</h2>
+        <p>One of the world's most influential business executives, Phil Knight is the founder of Nike, Inc. He served
+          as CEO of the company from 1964 to 2004, as board chairman through 2016, and he is currently Chairman
+          Emeritus. He lives in Oregon with his wife, Penny.</p>
+        <p><a class="btn btn-secondary" href="https://ru.wikipedia.org/wiki/Nike" role="button">View details »</a></p>
       </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="assets/images/adidasFounder.png" alt="Generic placeholder image" width="140"
+             height="140">
+        <h2>Adolf Dassler</h2>
+        <p>The name adidas came from the founder, Adolf “Adi” Dassler's name. He used his nickname, Adi, and the first
+          three letters of his last name, Das, to create adidas.</p>
+        <p><a class="btn btn-secondary" href="https://en.wikipedia.org/wiki/Adidas" role="button">View details »</a></p>
       </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="assets/images/newBalanceFounder.jpg" alt="Generic placeholder image"
+             width="140" height="140">
+        <h2>William J. Riley</h2>
+        <p>New Balance has been rooted in innovation ever since William Riley, a young English immigrant, designed his
+          first flexible arch insert in 1906. The arch was inspired by his observation that his backyard chickens,
+          standing on three claws, achieved perfect balance.</p>
+        <p><a class="btn btn-secondary" href="https://en.wikipedia.org/wiki/New_Balance" role="button">View details
+          »</a></p>
       </div>
     </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Sneakers history</h2>
+        <p>Sneakers (also called trainers, athletic shoes, tennis shoes, gym shoes, kicks, sport shoes, flats, running
+          shoes, or runners) are shoes primarily designed for sports or other forms of physical exercise, but which are
+          also widely used for everyday casual wear.
+          Since their popularization by companies such as Converse, Nike and Spalding in the mid 20th century, they have
+          become attire, with variety growing in many global markets exponentially. Like other parts of the global
+          clothing industry, manufacture of shoes is heavily concentrated in Asia with nine in ten shoes produced in
+          that region.[1]
+          Contemporary sneakers are largely made from synthetic materials, and the materials and manufacturing process
+          produce, on average, about 14 kg (31 lb) of CO2 emissions.[2][3] Some companies are trying to substitute more
+          sustainable materials in their manufacture.[3] About 90% of shoes end up in landfills at end of life.[4]</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500"
+             style="width: 500px; height: 500px;"
+             src="assets/images/1.jpg"
+             data-holder-rendered="true">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Choose what you want</h2>
+        <p>The shoes have gone by a variety of names, depending on geography and changing over the decades. The term
+          "sneakers" is most commonly used in Northeastern United States, Central and South Florida,[5][6] Australia[7]
+          New Zealand, and parts of Canada. However, in Australian, Canadian, and Scottish English, running shoes and
+          runners are synonymous terms used to refer to sneakers; with the latter term also used in Hiberno-English.
+          Tennis shoes is another term used in Australian, and North American English.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500"
+             src="assets/images/2.jpg"
+             data-holder-rendered="true" style="width: 500px; height: 500px;">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">And lastly, be king. <span class="text-muted">THE KING.</span></h2>
+        <p>Sneakers have been an important part of hip hop (primarily Pumas, Nike, and Adidas) and rock 'n roll
+          (Converse, Vans) cultures since the 1970s. Hip hop artists sign million dollar deals with major brands such as
+          Nike, Adidas, or Puma to promote their shoes.[22][citation needed] Sneaker collectors, called "sneakerheads",
+          regard sneakers as fashionable items. Sneaker companies encourage this trend by producing rare sneakers in
+          limited numbers, often at very high retail prices. Artistically-modified sneakers can sell for upwards of
+          $1000 at exclusive establishments like Saks Fifth Avenue</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500"
+             src="assets/images/3.jpg"
+             data-holder-rendered="true" style="width: 500px; height: 500px;">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
   </div>
 </main>

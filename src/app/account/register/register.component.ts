@@ -3,7 +3,8 @@ import {AsyncValidatorFn, FormBuilder, FormGroup, Validators} from "@angular/for
 import {AccountService} from "../account.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {delay, map, of, switchMap, timer} from "rxjs";
+import {map, of, switchMap, timer} from "rxjs";
+import {SearchCountryField, CountryISO} from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,10 @@ import {delay, map, of, switchMap, timer} from "rxjs";
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   errors!: string[];
+  separateDialCode = true;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
 
   constructor(private fb: FormBuilder, private accountService: AccountService,
               private router: Router, private toastr: ToastrService) {
@@ -24,27 +29,28 @@ export class RegisterComponent implements OnInit {
 
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      'displayName': ['', Validators.required],
-      'email': ['', [Validators.required,
+      'userName': ['ViktarUser', Validators.required],
+      'email': ['viktar.varabei1@mail.ru', [Validators.required,
         Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')],
-      [this.validateExistingEmail()]
+        [this.validateExistingEmail()]
       ],
-      'password': ['', Validators.required]
+      'phoneNumber': [null, Validators.required],
+      'password': ['1919101976$aAa$', Validators.required]
     })
   }
 
   onSubmit() {
+    this.registerForm.value.phoneNumber = this.registerForm.value.phoneNumber.internationalNumber;
     this.accountService.register(this.registerForm.value).subscribe(response => {
-      this.toastr.success('Registration completed successfully');
-      delay(3000);
-      this.router.navigateByUrl('/login');
+      this.toastr.success('Confirmation link has been sent');
+      this.router.navigateByUrl('account/login');
     }, error => {
       console.log(error);
       this.errors = error.errors;
     })
   }
 
-  validateExistingEmail():AsyncValidatorFn | null[] {
+  validateExistingEmail(): AsyncValidatorFn | null[] {
     return control => {
       return timer(500).pipe(
         switchMap(() => {

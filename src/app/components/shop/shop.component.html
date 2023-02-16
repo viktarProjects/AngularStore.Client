@@ -3,38 +3,43 @@
 
     <section class="col-3">
       <ng-container *ngIf="types && brands">
-        <h5 class="text-warning ml-3 mt-5">Sort</h5>
-      <select class="custom-select mb-3" (change)="onSortSelected($event.target.value)">
-        <option selected
-                *ngFor="let sort of sortOptions"
-                [value]="sort.value"
-        >
-          {{sort.name}}
-        </option>
-      </select>
-
-      <h5 class="text-warning ml-3">Brands</h5>
-      <ul class="list-group my-3">
-        <li class="list-group-item"
-            *ngFor="let brand of brands"
-            [class.active]="brand.id === this.shopParams.brandId"
-            [value]="brand.id"
-            (click)="onBrandSelected(brand.id)"
-        >
-          {{brand.name}}
-        </li>
-      </ul>
-      <h5 class="text-warning ml-3">Types</h5>
-      <ul class="list-group my-3">
-        <li class="list-group-item"
-            *ngFor="let type of types"
-            [class.active]="type.id === this.shopParams.typeId"
-            [value]="type.id"
-            (click)="onTypeSelected(type.id)"
-        >
-          {{type.name}}
-        </li>
-      </ul>
+        <div class="mt-4 py-2" style="background-color: white; border-radius: 15px;">
+          <div *ngFor="let sort of sortOptions" class="form-check my-4 mx-3">
+            <input (click)="onSortSelected($event.target.value)"
+                   [value]="sort.value"
+                   class="form-check-input"
+                   type="radio"
+                   name="flexRadioDefault"
+                   id="flexRadioDefault1">
+            <label class="form-check-label text-uppercase" for="flexRadioDefault1">
+              {{sort.name}}
+            </label>
+          </div>
+        </div>
+        <div class="mt-4 py-2" style="background-color: white; border-radius: 15px;">
+          <div *ngFor="let brand of brands" class="form-check my-4 mx-3">
+            <input (click)="onBrandSelected(brand.name,$event.target.value)"
+                   class="form-check-input"
+                   type="checkbox"
+                   [checked]="shopParams.brands.indexOf(brand.name) > -1"
+                   [value]="brand.name">
+            <label class="form-check-label text-uppercase">
+              {{brand.name}}
+            </label>
+          </div>
+        </div>
+        <div class="mt-4 py-2" style="background-color: white; border-radius: 15px;">
+          <div *ngFor="let type of types" class="form-check my-4 mx-3">
+            <input (click)="onTypeSelected(type.name)"
+                   class="form-check-input"
+                   type="checkbox"
+                   [checked]="shopParams.types.indexOf(type.name) > -1"
+                   [value]="type.id">
+            <label class="form-check-label text-uppercase">
+              {{type.name}}
+            </label>
+          </div>
+        </div>
       </ng-container>
     </section>
 
@@ -48,21 +53,25 @@
         </app-paging-header>
 
         <div class="d-flex" *ngIf="products">
-          <input (keyup.enter)="onSearch()" #search class="form-control mx-2" style="width: 300px" placeholder="Search..." type="text">
+          <input (keyup.enter)="onSearch()" #search class="form-control mx-2"
+                 style="width: 300px; border-radius: 15px"
+                 placeholder="Search..." type="text">
           <button (click)="onSearch()" class="btn btn-outline-primary mx-1 my-2">Search</button>
           <button (click)="onReset()" class="btn btn-outline-success mx-1 my-2">Reset</button>
         </div>
       </div>
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col-4 mb-3" *ngFor="let product of products">
+        <div class="col-5 mb-3" *ngFor="let product of products">
           <app-product-item [product]="product"></app-product-item>
         </div>
       </div>
+
       <app-pager
-      [pageSize]="shopParams.pageSize"
-      [totalCount]="totalCount"
-      (pageChanged)="onPageChanged($event)"
+        [pageSize]="shopParams.pageSize"
+        [totalCount]="totalCount"
+        [pageNumber]="shopParams.pageNumber"
+        (pageChanged)="onPageChanged($event)"
       >
       </app-pager>
     </section>

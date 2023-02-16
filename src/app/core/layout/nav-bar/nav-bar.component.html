@@ -1,18 +1,16 @@
 <header class="p-1 bg-primary">
   <div class="d-flex align-items-center">
-    <img src="/assets/images/logo.png"
+    <img src="assets/images/logo.png"
          [routerLink]="['/']"
-         style="max-height: 70px;margin-left: 25px"
+         style="max-height: 80px;margin-left: 25px"
          alt="logo">
     <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center text-uppercase">
-      <li><a [routerLink]="['/']" routerLinkActive="active"
+      <li><a [routerLink]="['/home']" routerLinkActive="active"
              [routerLinkActiveOptions]="{exact:true}"
              class="nav-link px-2">Home</a>
       </li>
       <li><a [routerLink]="['/catalog']" routerLinkActive="active" class="nav-link px-2">Catalog</a></li>
-      <li><a [routerLink]="['/faq']" routerLinkActive="active" class="nav-link px-2">FAQs</a></li>
-      <li><a [routerLink]="['/about']" routerLinkActive="active" class="nav-link px-2">About</a></li>
-      <li><a [routerLink]="['/test-error']" routerLinkActive="active" class="nav-link px-2">ErrorTesting</a></li>
+      <li><a [routerLink]="['/contact-us']" routerLinkActive="active" class="nav-link px-2">Contact us</a></li>
     </ul>
     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
       <input type="search" class="form-control form-control-primary" placeholder="Search..."
@@ -30,20 +28,20 @@
       <ng-container *ngIf="(currentUser$ | async) as user">
         <div class="dropdown mx-3" dropdown>
           <a class="dropdown-toggle" style="cursor: pointer;margin-right: 15px" dropdownToggle>
-            <strong>Welcome, {{user.displayName}}!</strong>
+            <strong>Welcome, {{user.userName}}!</strong>
           </a>
           <div  class="dropdown-menu bg-light" style="cursor:pointer" *dropdownMenu>
-            <a href="" class="dropdown-item align-items-center text-dark">
+            <a [routerLink]="['account/my-account']" class="dropdown-item align-items-center text-dark">
               <i class="fa fa-address-book mr-3">My Account</i>
             </a>
-            <a href="" class="dropdown-item  align-items-center text-dark">
+            <a [routerLink]="['/basket']" class="dropdown-item  align-items-center text-dark">
               <i class="fa fa-shopping-cart mr-3">View Basket</i>
             </a>
-            <a href="" class="dropdown-item  align-items-center text-dark">
-              <i class="fa fa-history mr-3">View Orders</i>
+            <a [routerLink]="['/orders']" class="dropdown-item  align-items-center text-dark">
+              <i  class="fa fa-history mr-3">View Orders</i>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="" class="dropdown-item  align-items-center text-dark">
+            <a (click)="logOut()" class="dropdown-item  align-items-center text-dark">
               <i class="fa fa-sign-out mr-3">LogOut</i>
             </a>
           </div>

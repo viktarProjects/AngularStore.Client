@@ -1,3 +1,27 @@
-<div class="container mt-5">
-  <h1>Only authorized users should be able to this this!</h1>
+<div class="mt-3 d-inline-flex">
+    <div class="mx-3" style="background-color: white;width: 150%;max-width: 150%">
+      <app-stepper [linearModeSelected]="true" #appStepper>
+        <cdk-step [label]="'Address'">
+          <app-checkout-address (address)=setAddressHandler($event)></app-checkout-address>
+        </cdk-step>
+        <cdk-step [label]="'Delivery'">
+          <app-checkout-delivery></app-checkout-delivery>
+        </cdk-step>
+        <cdk-step [label]="'Review'">
+          <app-checkout-review [appStepper]="appStepper"></app-checkout-review>
+        </cdk-step>
+        <cdk-step [label]="'Payment'">
+          <app-checkout-payment [address]="address"></app-checkout-payment>
+        </cdk-step>
+      </app-stepper>
+    </div>
+    <div class="mx-1">
+      <app-order-totals
+        *ngIf="(basketTotals$ | async)"
+        [shipping]="(basketTotals$ | async)?.shippingPrice!"
+        [subtotal]="(basketTotals$ | async)?.subtotal!"
+        [total]="(basketTotals$ | async)?.total!"
+      >
+      </app-order-totals>
+    </div>
 </div>
