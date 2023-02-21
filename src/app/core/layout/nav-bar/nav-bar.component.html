@@ -11,6 +11,7 @@
       </li>
       <li><a [routerLink]="['/catalog']" routerLinkActive="active" class="nav-link px-2">Catalog</a></li>
       <li><a [routerLink]="['/contact-us']" routerLinkActive="active" class="nav-link px-2">Contact us</a></li>
+      <li *ngIf="(currentUser$ | async) as user"><a *ngIf="user.role.includes('Admin')" [routerLink]="['/management']" routerLinkActive="active" class="nav-link px-2">Management</a></li>
     </ul>
     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
       <input type="search" class="form-control form-control-primary" placeholder="Search..."

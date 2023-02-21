@@ -1,31 +1,45 @@
-<div class="container py-4 my-4 mx-auto d-flex flex-column">
-  <div class="header">
-    <div class="row r1">
-      <div class="col-md-9 abc">
-        <h1>{{product.name}}</h1>
+<div class="container">
+  <div class="card">
+    <div class="container-fliud">
+      <div class="wrapper row">
+        <div class="preview col-md-6">
+
+          <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1"><img style="max-width: 350px;max-height: 350px;" src="{{product.pictureUrl}}" /></div>
+            <div class="tab-pane" id="pic-2"><img style="max-width: 350px;max-height: 350px;" src="{{product.pictureUrl}}" /></div>
+            <div class="tab-pane" id="pic-3"><img style="max-width: 350px;max-height: 350px;" src="{{product.pictureUrl}}"  /></div>
+            <div class="tab-pane" id="pic-4"><img style="max-width: 350px;max-height: 350px;" src="{{product.pictureUrl}}"  /></div>
+            <div class="tab-pane" id="pic-5"><img style="max-width: 350px;max-height: 350px;" src="{{product.pictureUrl}}" /></div>
+          </div>
+          <ul class="preview-thumbnail nav nav-tabs">
+            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{product.pictureUrl}}" /></a></li>
+            <li><a data-target="#pic-2" data-toggle="tab"><img src="{{product.pictureUrl}}" /></a></li>
+            <li><a data-target="#pic-3" data-toggle="tab"><img src="{{product.pictureUrl}}" /></a></li>
+            <li><a data-target="#pic-4" data-toggle="tab"><img src="{{product.pictureUrl}}" /></a></li>
+            <li><a data-target="#pic-5" data-toggle="tab"><img src="{{product.pictureUrl}}" /></a></li>
+          </ul>
+
+        </div>
+        <div class="details col-md-6">
+          <h3 class="product-title">{{product.name}}</h3>
+          <div class="rating">
+            <div class="stars">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+            <span class="review-no">41 reviews</span>
+          </div>
+          <p class="product-description">{{product.description}}</p>
+          <h4 class="price">current price: <span>{{product.price | currency}}</span></h4>
+          <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+          <div class="action">
+            <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+          </div>
+        </div>
       </div>
-      <div class="col-md-3 text-right pqr"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-      <p class="text-right para">Based on 250 Review</p>
-    </div>
-  </div>
-  <div class="container-body mt-4">
-    <div class="row r3">
-      <div class="col-md-5 p-0 klo">
-        <ul style="border-radius: 20px;padding: 10px;margin: 10px">
-          <li>100% Quality</li>
-          <li>Easy Returns</li>
-          <li>12 Months Warranty</li>
-          <li>EMI Starting from (On Credit Cards)</li>
-          <li>COD Available (All Over India)</li>
-          <li class="">*{{product.description}}</li>
-        </ul>
-      </div>
-      <div class="col-md-7"> <img src="{{product.pictureUrl}}" width="60%" height="65%"> </div>
-    </div>
-  </div>
-  <div class="footer d-flex flex-column">
-    <div class="row r4">
-      <div class="col-md-2 myt des"><a href="#">Description</a></div>
     </div>
   </div>
 </div>

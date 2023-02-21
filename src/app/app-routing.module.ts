@@ -5,7 +5,7 @@ import {AuthGuard} from "./core/guards/auth.guard";
 import {ContactUsComponent} from "./components/contact-us/contact-us.component";
 
 const routes : Routes = [
-  {path:'',component: HomeComponent,data : {breadcrumb:'Home'}},
+  {path:'',component: HomeComponent, pathMatch:"full",data : {breadcrumb:'Home'}},
   {path:'home',component: HomeComponent,data : {breadcrumb:'Home'}},
   {path:'contact-us',component: ContactUsComponent,data : {breadcrumb:'Contact us'}},
   {path:'catalog',loadChildren: () => import('./components/shop/shop.module').then(x => x.ShopModule),

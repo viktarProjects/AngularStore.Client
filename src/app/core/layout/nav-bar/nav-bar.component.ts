@@ -2,7 +2,7 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {IBasket} from "../../../shared/models/basket";
 import {BasketService} from "../../../components/basket/basket.service";
-import {IUser} from "../../../shared/models/user";
+import {IToken, IUser} from "../../../shared/models/user";
 import {AccountService} from "../../../account/account.service";
 
 @Component({

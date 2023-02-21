@@ -1,7 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../account/account.service";
-import {IAddress} from "../../shared/models/IAddress";
+import {Address} from "../../shared/models/address";
 import {Observable} from "rxjs";
 import {IBasketTotals} from "../../shared/models/basket";
 import {BasketService} from "../basket/basket.service";
@@ -13,7 +13,7 @@ import {BasketService} from "../basket/basket.service";
 })
 export class CheckoutComponent implements OnInit {
   deliveryMethod: number = 0;
-  address!: IAddress;
+  address!: Address;
   basketTotals$!: Observable<IBasketTotals | null>;
 
   constructor(private basketService: BasketService) {
@@ -24,7 +24,7 @@ export class CheckoutComponent implements OnInit {
     this.basketTotals$ = this.basketService.basketTotal$;
   }
 
-  setAddressHandler(event: IAddress) {
+  setAddressHandler(event: Address) {
     this.address = event;
   }
 }

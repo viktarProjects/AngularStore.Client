@@ -1,7 +1,15 @@
 <div class="container my-3">
   <div class="row">
-
     <section class="col-3">
+      <div class="d-flex" *ngIf="products">
+        <input (keyup.enter)="onSearch()" #search class="form-control"
+               style="width: 300px; border-radius: 15px"
+               placeholder="Search..." type="text">
+
+      </div>
+      <button (click)="onSearch()" class="btn btn-outline-primary w-100 mt-2">Search</button>
+      <p></p>
+      <button (click)="onReset()" class="btn btn-outline-success mt-2 w-100">Reset</button>
       <ng-container *ngIf="types && brands">
         <div class="mt-4 py-2" style="background-color: white; border-radius: 15px;">
           <div *ngFor="let sort of sortOptions" class="form-check my-4 mx-3">
@@ -44,29 +52,12 @@
     </section>
 
     <section class="col-9">
-      <div class="d-flex justify-content-between align-items-center pb-2">
-
-        <app-paging-header
-          [pageNumber]="shopParams.pageNumber"
-          [pageSize]="shopParams.pageSize"
-          [totalCount]="totalCount">
-        </app-paging-header>
-
-        <div class="d-flex" *ngIf="products">
-          <input (keyup.enter)="onSearch()" #search class="form-control mx-2"
-                 style="width: 300px; border-radius: 15px"
-                 placeholder="Search..." type="text">
-          <button (click)="onSearch()" class="btn btn-outline-primary mx-1 my-2">Search</button>
-          <button (click)="onReset()" class="btn btn-outline-success mx-1 my-2">Reset</button>
-        </div>
-      </div>
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col-5 mb-3" *ngFor="let product of products">
           <app-product-item [product]="product"></app-product-item>
         </div>
       </div>
-
       <app-pager
         [pageSize]="shopParams.pageSize"
         [totalCount]="totalCount"
@@ -74,6 +65,13 @@
         (pageChanged)="onPageChanged($event)"
       >
       </app-pager>
+      <div class="d-flex justify-content-between align-items-center pb-2">
+        <app-paging-header
+          [pageNumber]="shopParams.pageNumber"
+          [pageSize]="shopParams.pageSize"
+          [totalCount]="totalCount">
+        </app-paging-header>
+      </div>
     </section>
   </div>
 </div>

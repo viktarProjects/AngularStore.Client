@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {BasketService} from "./components/basket/basket.service";
 import {AccountService} from "./account/account.service";
 import {CookieService} from "ngx-cookie-service";
-import jwtDecode from "jwt-decode";
 
 @Component({
   selector: 'app-root',
@@ -23,18 +22,16 @@ export class AppComponent implements OnInit {
   }
 
   loadCurrentUser() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.accountService.loadCurrentUser(token).subscribe(() => {
-      }, error => {
-        console.log(error)
-      })
-    }
+    this.accountService.loadCurrentUser();
   }
 
   loadBasket() {
     const basketId = this.cookieService.get('buyerId');
-    const userName = this.jwtDecoder();
+    const user = this.accountService.decodeToken();
+    let userName = null;
+    if (user) {
+      userName = user.userName;
+    }
     const credentials = userName ? userName : basketId;
     if (credentials) {
       this.basketService.getBasket(credentials).subscribe(() => {
@@ -44,12 +41,5 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private jwtDecoder() {
-    const token = localStorage.getItem('token');
-    if(token){
-      const decoded = jwtDecode(token, {header: false});
-      // @ts-ignore
-      return decoded!.unique_name;
-    }
-  }
+
 }

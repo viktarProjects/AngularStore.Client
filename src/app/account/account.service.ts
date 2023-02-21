@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, map} from "rxjs";
-import {IUser} from "../shared/models/user";
+import {IToken, IUser} from "../shared/models/user";
 import {Router} from "@angular/router";
-import {IAddress} from "../shared/models/IAddress";
+import {Address} from "../shared/models/address";
 import {BasketService} from "../components/basket/basket.service";
+import jwtDecode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new BehaviorSubject<IUser | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
-  private addressAddressSource = new BehaviorSubject<IAddress | null>(null);
+  private addressAddressSource = new BehaviorSubject<Address | null>(null);
   currentAddress$ = this.addressAddressSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router, private basketService: BasketService) {
@@ -24,31 +25,24 @@ export class AccountService {
     return this.currentUserSource.value;
   }
 
-
-  loadCurrentUser(token: string | null | undefined) {
+  loadCurrentUser() {
+    const token = localStorage.getItem('token');
     if (token == null) {
       this.currentUserSource.next(null);
     }
-
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', `Bearer ${token}`);
-
-    return this.http.get<IUser>(this.baseUrl + 'Account', {headers}).pipe(
-      map((user: IUser) => {
-        if (user) {
-          this.currentUserSource.next(user);
-        }
-      })
-    );
+    const user = this.decodeToken();
+    this.currentUserSource.next(user);
+    console.log(user);
   }
 
   login(values: any) {
-    return this.http.post<IUser>(this.baseUrl + 'Account/login', values).pipe(
-      map((user: IUser) => {
-        if (user) {
-          localStorage.setItem('token', user.token);
+    return this.http.post<IToken>(this.baseUrl + 'Account/login', values).pipe(
+      map((token: IToken) => {
+        if (token) {
+          localStorage.setItem('token', token.token);
+          const user = this.decodeToken();
           this.currentUserSource.next(user);
-          this.basketService.getBasket(user.userName).subscribe();
+          this.basketService.getBasket(user?.userName!).subscribe();
         }
       })
     );
@@ -58,7 +52,7 @@ export class AccountService {
     return this.http.post<IUser>(this.baseUrl + 'Account/register', values).pipe(
       map((user: IUser) => {
         if (user) {
-          localStorage.setItem('token', user.token);
+
         }
       })
     );
@@ -76,10 +70,18 @@ export class AccountService {
   }
 
   getUserAddress() {
-    return this.http.get<IAddress>(this.baseUrl + 'Account/address');
+    return this.http.get<Address>(this.baseUrl + 'Account/address');
   }
 
-  updateUserAddress(address: IAddress) {
-    return this.http.put<IAddress>(this.baseUrl + 'Account/address', address);
+  updateUserAddress(address: Address) {
+    return this.http.put<Address>(this.baseUrl + 'Account/address', address);
+  }
+
+  decodeToken(): IUser | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      return jwtDecode<IUser>(token, {header: false});
+    }
+    return null;
   }
 }

@@ -1,6 +1,13 @@
+export interface IToken {
+  token: string;
+}
+
 export interface IUser {
-  email:string;
-  userName:string;
-  phoneNumber:string;
-  token:string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
+  role: string[];
+  nbf: number;
+  exp: number;
+  iat: number;
 }

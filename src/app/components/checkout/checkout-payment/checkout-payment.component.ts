@@ -7,7 +7,7 @@ import {IBasket} from "../../../shared/models/basket";
 import {IOrderToCreate} from "../../../shared/models/order";
 import {NavigationExtras, Router} from "@angular/router";
 import {AccountService} from "../../../account/account.service";
-import {IAddress} from "../../../shared/models/IAddress";
+import {Address} from "../../../shared/models/address";
 
 declare var Stripe: any;
 
@@ -18,7 +18,7 @@ declare var Stripe: any;
 })
 export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestroy {
   paymentForm!: FormGroup;
-  @Input() address!: IAddress;
+  @Input() address!: Address;
   @ViewChild('cardNumber', {static: true}) cardNumberElement!: ElementRef;
   @ViewChild('cardExpiry', {static: true}) cardExpiryElement!: ElementRef;
   @ViewChild('cardCvc', {static: true}) cardCvcElement!: ElementRef;

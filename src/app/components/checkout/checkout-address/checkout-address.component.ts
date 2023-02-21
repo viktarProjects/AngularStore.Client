@@ -4,7 +4,7 @@ import {AccountService} from "../../../account/account.service";
 import {ToastrService} from "ngx-toastr";
 import {Observable} from "rxjs";
 import {IBasket} from "../../../shared/models/basket";
-import {IAddress} from "../../../shared/models/IAddress";
+import {Address} from "../../../shared/models/address";
 
 @Component({
   selector: 'app-checkout-address',
@@ -13,7 +13,7 @@ import {IAddress} from "../../../shared/models/IAddress";
 })
 export class CheckoutAddressComponent implements OnInit {
   addressForm!: FormGroup;
-  @Output() address = new EventEmitter<IAddress>();
+  @Output() address = new EventEmitter<Address>();
 
   constructor(private accountService: AccountService, private toastr: ToastrService) {
   }
@@ -54,7 +54,7 @@ export class CheckoutAddressComponent implements OnInit {
     });
   }
 
-  addressEmitter(address: IAddress) {
+  addressEmitter(address: Address) {
     this.address.emit(address);
   }
 }
